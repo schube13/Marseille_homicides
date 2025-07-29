@@ -169,6 +169,10 @@
                 margin: 0 auto;
             }
         }
+        video {
+                border-radius: 10px;
+                margin-bottom: 1em;
+                }
 
         /* Fix issue on mobile browser where scroll breaks  */
         .mapboxgl-canvas-container.mapboxgl-touch-zoom-rotate.mapboxgl-touch-drag-pan,
@@ -183,6 +187,28 @@
 
     <div id="map"></div>
     <div id="story"></div>
+
+    <script>
+  function checkAnswer() {
+    const select = document.getElementById('arrSelect');
+    const result = document.getElementById('arrResult');
+    const selected = select.value;
+
+    if (!selected) {
+      result.textContent = '';
+      return;
+    }
+
+    if (selected === '14') {
+      result.textContent = "✅ Well done, you are an expert!";
+      result.style.color = "green";
+    } else {
+      result.textContent = "❌ Nice try, but read the story again.";
+      result.style.color = "darkred";
+    }
+  }
+    </script>
+
 
     <script src="./config.js"></script>
     <script>
@@ -262,11 +288,26 @@
                 chapter.appendChild(title);
             }
 
-            if (record.image) {
+            if (record.video) {
+                var video = document.createElement('video');
+                video.src = record.video;
+                video.controls = true;
+                video.autoplay = true;
+                video.playsInline = true;
+                video.muted = true;
+                video.loop = true;
+                video.style.width = '100%';
+                video.style.borderRadius = '12px';
+                video.style.boxShadow = '0 2px 6px rgba(0,0,0,0.2)';
+                chapter.appendChild(video);
+}            else if (record.image) {
                 var image = new Image();
                 image.src = record.image;
+                image.style.width = '100%';
+                image.style.borderRadius = '12px';
+                image.style.boxShadow = '0 2px 6px rgba(0,0,0,0.2)';
                 chapter.appendChild(image);
-            }
+}
 
             if (record.description) {
                 var story = document.createElement('p');

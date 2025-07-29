@@ -100,7 +100,7 @@ var config = {
     title: 'Is Marseille safe for tourists?',
     subtitle: "The City in the South of France just had record numbers in tourists. But also record numbers in homicides.",
     byline: 'By Ursula Maria Schubiger',
-    footer: 'Answer: The homicide happened in 14th Arrondissement. <br> Created using <a href="https://github.com/mapbox/storytelling" target="_blank">Mapbox Storytelling</a> template.',
+    footer: "This is a project for Data Journalism at LEDE, Columbia University. <br> Created using <a href="https://github.com/mapbox/storytelling" target="_blank">Mapbox Storytelling</a> template.',
     chapters: [
 {
     id: 'slug-style-id',
@@ -377,7 +377,7 @@ var config = {
             alignment: 'left',
             hidden: false,
             title: 'Where every single gang related homicide happened since 2023:',
-            image: './assets/buenos-aires.jpg',
+            video: './assets/busserine.mp4',
             description: 'Gang related homicides are called «reglements de comptes». Police track those cases back to war between drug-gangs. They are well documented by police, media and politics. Most of those homicides happened in the classic no-go-area «Quartiers nords». The green arrondissements 1, 6, 7 and 8 on the other side a homecide-free.',
             location: {
                 center: [5.341349, 43.299162],
@@ -385,6 +385,7 @@ var config = {
                 pitch: 0,
                 bearing: 0
             },
+    
             mapAnimation: 'flyTo',
             rotateAnimation: false,
             callback: '',
@@ -589,7 +590,7 @@ var config = {
                 { layer: 'morde-jahr-2024', opacity: 0 },
                 { layer: 'neu-morde-2025', opacity: 0 },
                 { layer: 'layer-zone-sensibles-572e0s', opacity: 1 },
-                { layer: 'marseille-stadtgrenze', opacity: 0 },
+                { layer: 'marseille-stadtgrenze', opacity: 0.8 },
                 { layer: 'building', opacity: 1 },
                 { layer: 'layer-arrondissementssud', opacity: 0 },
                 { layer: 'marseille_stadtgrenze_voll', opacity: 0.6 },
@@ -605,23 +606,48 @@ var config = {
             onChapterExit: []
         },
         {
-            id: 'blank-ending',
-            alignment: 'fully',
-            hidden: false,
-            title: '',
-            description: '',
-            location: {
-                center: [5.386564, 43.299162],  // gleiche Position oder gewünschte Endposition
+                id: 'blank-ending',
+                alignment: 'fully',
+                hidden: false,
+                title: '🔎 Final Quiz: Where did the last homicide happen?',
+                description: `
+                     After all you’ve learned – in which arrondissement did the most recent gang-related homicide take place?
+                <br><br>
+                <label for="arrSelect"><strong>Choose an Arrondissement:</strong></label><br>
+                <select id="arrSelect" onchange="checkAnswer()" style="padding: 6px; border-radius: 6px; font-family: 'Space Grotesk', sans-serif;">
+            <option value="">-- Select --</option>
+            <option value="1">1e</option>
+            <option value="2">2e</option>
+            <option value="3">3e</option>
+            <option value="4">4e</option>
+            <option value="5">5e</option>
+            <option value="6">6e</option>
+            <option value="7">7e</option>
+            <option value="8">8e</option>
+            <option value="9">9e</option>
+            <option value="10">10e</option>
+            <option value="11">11e</option>
+            <option value="12">12e</option>
+            <option value="13">13e</option>
+            <option value="14">14e</option>
+            <option value="15">15e</option>
+            <option value="16">16e</option>
+                </select>
+                <p id="arrResult" style="font-weight:bold; margin-top:10px;"></p>
+            `,
+                location: {
+                center: [5.386564, 43.299162],
                 zoom: 11.5,
                 pitch: 0,
                 bearing: 0
-            },
-            mapAnimation: 'flyTo',
-            rotateAnimation: false,
-            callback: '',
-            onChapterEnter: [],
-            onChapterExit: []
-}
+        },
+                mapAnimation: 'flyTo',
+                rotateAnimation: false,
+                callback: '',
+                onChapterEnter: [],
+                onChapterExit: []
 
-    ]
-};
+            
+            }
+            ]            
+        };
